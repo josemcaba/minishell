@@ -31,12 +31,12 @@ $(PROGRAM): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft
 
 clean:
-	rm -rf $(OBJ_DIR)/*
-	@$(MAKE) -C $(LIBFT_DIR) clean
+	@rm -rf $(OBJ_DIR)/*
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(PROGRAM)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

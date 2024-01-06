@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../libft/libft.h"
 
 int main(int argc, char *argv[], char *envp[]) {
 
@@ -9,7 +10,8 @@ int main(int argc, char *argv[], char *envp[]) {
 	}
 	while (*envp) 
 	{
-		printf("%s******\n", *envp);
+		if (ft_strncmp(*envp, "PWD=", 4) == 0)
+			printf("%s\n", &(*envp)[4]);
 		envp++;
 	}
 
