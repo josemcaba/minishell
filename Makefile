@@ -1,10 +1,13 @@
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I./include
+PROGRAM = minishell
+
 SRC_DIR = src
+HDR_DIR = hdr
 OBJ_DIR = obj
 LIBFT_DIR = libft
-PROGRAM = minishell
 LIBFT = $(LIBFT_DIR)/libft.a
+
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -I./$(HDR_DIR)
 
 # Recopila todos los archivos fuente ".c" del directorio "src".
 SOURCES = $(wildcard $(SRC_DIR)/*.c)
