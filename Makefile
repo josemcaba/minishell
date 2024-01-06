@@ -1,9 +1,10 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I./include
+
 SRC_DIR = src
 OBJ_DIR = obj
 LIBFT_DIR = libft
-PROGRAM = your_executable_name
+PROGRAM = minishell
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SOURCES = $(wildcard $(SRC_DIR)/*.c)
