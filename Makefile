@@ -15,7 +15,7 @@ SOURCES = $(wildcard $(SRC_DIR)/*.c)
 # Genera la lista de objetos correspondiente a los archivos fuente.
 OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SOURCES))
 
-$NAME: all
+$(NAME): all
 
 all: $(LIBFT) $(PROGRAM)
 
