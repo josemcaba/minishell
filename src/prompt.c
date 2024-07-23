@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 13:30:38 by jocaball          #+#    #+#             */
-/*   Updated: 2024/01/14 02:35:46 by jocaball         ###   ########.fr       */
+/*   Created: 2024/01/07 10:57:17 by jocaball          #+#    #+#             */
+/*   Updated: 2024/01/07 18:40:18 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdr/minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	prompt(void)
 {
-	char	*cmdline;
+	int		i;
 
-	if (argc != 1)
+	printf("%s%s%s%s", YELLOW, getenv("USER"), "@", "msh42");
+	printf("%s%s", DEF_COLOR, ":");
+	i = ft_memcmp(getenv("PWD"), getenv("HOME"), ft_strlen(getenv("HOME")));
+	if (i == 0)
 	{
-		printf("Usage: %s\n", argv[0]);
-		return (1);
+		printf("%s%s%s", GREEN, "~", getenv("PWD") + ft_strlen(getenv("HOME")));
+		printf("%s%s", DEF_COLOR, "$ ");
 	}
-	while (*envp) 
+	else
 	{
-		if (ft_strncmp(*envp, "PATH=", 5) == 0)
-			printf("%s\n", *envp);
-		envp++;
+		printf("%s%s", GREEN, getenv("PWD"));
+		printf("%s%s", DEF_COLOR, "$ ");
 	}
-	while (42)
-	{
-		prompt();
-		cmdline = readline("");
-		if (!fork())
-			execve(cmdline, argv, NULL);
-		wait(NULL);
-		free(cmdline);
-	}
-	return (0);
 }
