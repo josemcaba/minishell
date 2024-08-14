@@ -45,7 +45,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 # Regla para generar el programa ejecutable.
 $(PROGRAM): $(OBJECTS) $(HEADERS)
 	$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft -lreadline
-	@norminette $(SRC_DIR) $(HDR_DIR) $(LIBFT_DIR) | grep -v OK! || true
+#	@norminette $(SRC_DIR) $(HDR_DIR) $(LIBFT_DIR) | grep -v OK! || true
 
 clean:
 	@rm -rf $(OBJ_DIR)/*
