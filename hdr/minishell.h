@@ -32,3 +32,6 @@ void	prompt(void);
 # define WHITE		"\033[0;97m"
 
 #endif
+
+// space tab  newline  |  &  ;  (  )  <  >
+ 

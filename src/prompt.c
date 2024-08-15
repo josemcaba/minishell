@@ -16,17 +16,14 @@ void	prompt(void)
 {
 	int		i;
 
-	printf("%s%s%s%s", YELLOW, getenv("USER"), "@", "msh42");
+	printf("%s", YELLOW);
+	printf("%s%s%s", getenv("USER"), "@", "msh42");
 	printf("%s%s", DEF_COLOR, ":");
+	printf("%s", GREEN);
 	i = ft_memcmp(getenv("PWD"), getenv("HOME"), ft_strlen(getenv("HOME")));
 	if (i == 0)
-	{
-		printf("%s%s%s", GREEN, "~", getenv("PWD") + ft_strlen(getenv("HOME")));
-		printf("%s%s", DEF_COLOR, "$ ");
-	}
+		printf("%s%s", "~", getenv("PWD") + ft_strlen(getenv("HOME")));
 	else
-	{
-		printf("%s%s", GREEN, getenv("PWD"));
-		printf("%s%s", DEF_COLOR, "$ ");
-	}
+		printf("%s", getenv("PWD"));
+	printf("%s", DEF_COLOR);
 }
