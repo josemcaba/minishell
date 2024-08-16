@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 	}
 	if (father == 0)
 	{
-		sleep(60);
+		sleep(10);
 		execve("/bin/ls", av, NULL);
 	}
 }
