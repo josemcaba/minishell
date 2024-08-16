@@ -1,7 +1,8 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/wait.h>
 
-# El proceso PADRE espera "wait()" hasta que el hijo termine. Entonces continúa
+// El proceso PADRE espera "wait()" hasta que el hijo termine. Entonces continúa
 
 int	main(int ac, char **av)
 {
@@ -10,7 +11,7 @@ int	main(int ac, char **av)
 	father = fork();
 	if (father > 0)
 	{
-		wait();
+		wait(NULL);
 		printf("I AM YOUR FATHER\n");
 	}
 	if (father == 0)
