@@ -25,19 +25,12 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	while (42)
 	{
-		prompt();
-		cmdline = readline("$ ");
-		// Esto es para que el padre ejecute el comando
-		printf("Soy el padre\n");
+		cmdline = prompt();
+		if (cmdline == NULL)
+			continue;
 		if (fork() == 0)
-		{
-			// Esto es para que el hijo ejecute el comando
-			sleep(10);
 			execve(cmdline, args, envp);
-		}
-		// Esto es para que el padre espere a que el hijo termine
 		wait(NULL);
-		printf("Sigo siendo el padre\n");
 		free(cmdline);
 	}
 	return (0);

@@ -17,8 +17,7 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
-
-void	prompt(void);
+# include <readline/history.h>
 
 # define DEF_COLOR	"\033[0;39m"
 # define BLACK		"\033[0;30m"
@@ -30,6 +29,8 @@ void	prompt(void);
 # define MAGENTA	"\033[0;95m"
 # define CYAN		"\033[0;96m"
 # define WHITE		"\033[0;97m"
+
+char    *prompt(void);
 
 #endif
 
