@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:43:09 by jocaball          #+#    #+#             */
-/*   Updated: 2023/04/23 20:49:50 by jocaball         ###   ########.fr       */
+/*   Updated: 2024/08/23 03:24:50 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,24 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	start;
 	size_t	end;
 	char	*strtrimmed;
-
+	
+	if (ft_strlen(s1) == 0)
+	{
+		strtrimmed = (char *)malloc(1 * sizeof(char));
+		if (!strtrimmed)
+			return (NULL);
+		strtrimmed[0] = '\0';
+		return (strtrimmed);
+	}
 	start = 0;
-	end = ft_strlen(s1);
+	end = ft_strlen(s1) - 1;
 	while ((start < end) && ft_strchr(set, s1[start]))
 		start++;
 	while ((end > start) && ft_strchr(set, s1[end]))
 		end--;
-	if (end != 0)
-		end++;
-	strtrimmed = (char *)malloc((end - start + 1) * sizeof(char));
+	strtrimmed = (char *)malloc((end - start + 2) * sizeof(char));
 	if (!strtrimmed)
 		return (NULL);
-	ft_strlcpy(strtrimmed, s1 + start, end - start + 1);
+	ft_strlcpy(strtrimmed, s1 + start, end - start + 2);
 	return (strtrimmed);
 }
