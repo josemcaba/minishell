@@ -33,8 +33,7 @@ char	*prompt(void)
 	cmdline = readline("$ ");
 	if (cmdline == NULL)
 		return (NULL);
-	t_cmdline = ft_strtrim(cmdline, " ");	
-	printf("%s\n", t_cmdline);
+	t_cmdline = ft_strtrim(cmdline, " ");
 	if (ft_strlen(t_cmdline) > 0)
 		add_history(t_cmdline);
 	free(cmdline);	
