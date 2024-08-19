@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 10:57:17 by jocaball          #+#    #+#             */
-/*   Updated: 2024/01/07 18:40:18 by jocaball         ###   ########.fr       */
+/*   Updated: 2024/08/19 02:36:44 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,44 @@
 
 #include "../hdr/minishell.h"
 
+char	*ft_strjoinfree(char *s1, char const *s2)
+{
+	char	*str;
+
+	str = ft_strjoin(s1, s2);
+	free(s1);
+	return (str);
+}
+
 char	*prompt(void)
 {
-	int		i;
 	char	*cmdline;
 	char	*t_cmdline;
+	char	*prompt;
+	int		i;
 
-	printf("%s%s%s%s", YELLOW, getenv("USER"), "@", "msh42");
-	printf("%s%s%s", DEF_COLOR, ":", GREEN);
+	prompt = ft_strjoin(YELLOW, getenv("USER"));
+	prompt = ft_strjoinfree(prompt, "@msh42");
+	prompt = ft_strjoinfree(prompt, DEF_COLOR);
+	prompt = ft_strjoinfree(prompt, ":");
+	prompt = ft_strjoinfree(prompt, CYAN);
 	i = ft_memcmp(getenv("PWD"), getenv("HOME"), ft_strlen(getenv("HOME")));
 	if (i == 0)
-		printf("%s%s", "~", getenv("PWD") + ft_strlen(getenv("HOME")));
+	{
+		prompt = ft_strjoinfree(prompt, "~");
+		prompt = ft_strjoinfree(prompt, \
+					getenv("PWD") + ft_strlen(getenv("HOME")));
+	}
 	else
-		printf("%s", getenv("PWD"));
-	printf("%s", DEF_COLOR);
-	cmdline = readline("$ ");
+		prompt = ft_strjoinfree(prompt, getenv("PWD"));
+	prompt = ft_strjoinfree(prompt, DEF_COLOR);
+	prompt = ft_strjoinfree(prompt, "$ ");
+	cmdline = readline(prompt);
+	free(prompt);
 	if (cmdline == NULL)
 		return (NULL);
-	t_cmdline = ft_strtrim(cmdline, " ");
+	t_cmdline = ft_strtrim(cmdline, " \t");
 	if (ft_strlen(t_cmdline) > 0)
 		add_history(t_cmdline);
-	free(cmdline);	
 	return (t_cmdline);
 }

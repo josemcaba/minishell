@@ -30,9 +30,8 @@
 # define CYAN		"\033[0;96m"
 # define WHITE		"\033[0;97m"
 
-char    *prompt(void);
+char	*prompt(void);
 
 #endif
 
 // space tab  newline  |  &  ;  (  )  <  >
- 

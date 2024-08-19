@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:30:38 by jocaball          #+#    #+#             */
-/*   Updated: 2024/08/14 02:35:46 by jocaball         ###   ########.fr       */
+/*   Updated: 2024/08/19 00:50:03 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	*cmdline;
-	char	*args[] = {"/bin/pwd", NULL};
 
 	(void)envp;
 	if (argc != 1)
@@ -27,12 +26,16 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		cmdline = prompt();
 		if (cmdline == NULL)
-			continue;
+			continue ;
 		if (fork() == 0)
-			execve(cmdline, args, envp);
-		wait(NULL);
-		free(cmdline);
+		{
+			execve(cmdline, argv, envp);
+		}
+		else
+		{
+			wait(NULL);
+			free(cmdline);
+		}
 	}
-	return (0);
+	return(0);
 }
-

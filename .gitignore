@@ -1,4 +1,5 @@
 libft/libft.a
-libft/*.o
-*.o
 minishell
+**/*.o
+**/*.dSYM
+**/*.out

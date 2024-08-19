@@ -6,7 +6,7 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/06 10:19:51 by jocaball          #+#    #+#              #
-#    Updated: 2024/08/14 20:10:43 by jocaball         ###   ########.fr        #
+#    Updated: 2024/08/19 05:04:11 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,8 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Regla para generar el programa ejecutable.
 $(PROGRAM): $(OBJECTS) $(HEADERS)
+	@norminette $(SRC_DIR) $(HDR_DIR) $(LIBFT_DIR) | grep -v ": OK!" 
 	$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft -lreadline
-#	@norminette $(SRC_DIR) $(HDR_DIR) $(LIBFT_DIR) | grep -v OK! || true
 
 clean:
 	@rm -rf $(OBJ_DIR)
